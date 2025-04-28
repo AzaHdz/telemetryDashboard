@@ -8,11 +8,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { PrimeNGConfig } from 'primeng/api'; // Importa PrimeNGConfig
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TableModule } from 'primeng/table'; // Import PrimeNG TableModule
+import { LoadingService } from './services/loading.service';
+import { CommonModule } from '@angular/common'; 
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MapViewComponent, MetricsCardsComponent, UnitListComponent, MetricsGraphsComponent, HttpClientModule, TableModule],
+  imports: [RouterOutlet, MapViewComponent, MetricsCardsComponent, UnitListComponent, MetricsGraphsComponent, HttpClientModule, TableModule, CommonModule ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA] // Agrega esto
@@ -20,10 +23,10 @@ import { TableModule } from 'primeng/table'; // Import PrimeNG TableModule
 export class AppComponent implements OnInit { // Implementa OnInit
   title = 'dashboard-app';
   selectedUnit: any;
+  unitsList: any;
+  loading$ = this.loadingService.loading$;
 
-
-
-  constructor(private primengConfig: PrimeNGConfig) {} // Inyecta PrimeNGConfig
+  constructor(private primengConfig: PrimeNGConfig, private loadingService: LoadingService) {} // Inyecta PrimeNGConfig
 
   ngOnInit() {
     this.primengConfig.ripple = true; // Activa el efecto ripple
@@ -34,5 +37,8 @@ export class AppComponent implements OnInit { // Implementa OnInit
   }
   onUniteSelected(event: any) {
     this.selectedUnit = event; // Guardas el dato
+  }
+  onUnitslist(event: any) {
+    this.unitsList = event; // Guardas el dato
   }
 }

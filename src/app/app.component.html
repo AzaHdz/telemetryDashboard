@@ -1,11 +1,16 @@
 <div style="padding: 32px;">
+  <div *ngIf="loading$ | async" class="loading-overlay">
+    <div class="loading-content">
+      Cargando datos...
+    </div>
+  </div>
   <h1 class="">Dashboard de Unidades</h1>
   <div style="width: 100%; margin-bottom: 32px;">
-    <app-metrics-cards [unit]="selectedUnit"></app-metrics-cards>
+    <app-metrics-cards [unitsList]="unitsList" [unit]="selectedUnit"></app-metrics-cards>
   </div>
   <div class="row" style="margin-bottom: 24px;">
     <div class="col-lg-6 col-md-12" style="margin-bottom: 8px;">
-      <app-unit-list (unitSelected)="onUniteSelected($event)"></app-unit-list>
+      <app-unit-list (unitSelected)="onUniteSelected($event)" (unitsList)="onUnitslist($event)"></app-unit-list>
     </div>
     <div class="col-lg-6 col-md-12">
       <app-map-view [unit]="selectedUnit"></app-map-view>

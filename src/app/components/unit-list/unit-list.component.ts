@@ -17,6 +17,7 @@ import * as L from 'leaflet';
 })
 export class UnitListComponent {
   @Output() unitSelected = new EventEmitter<any>();
+  @Output() unitsList = new EventEmitter<any>();
   units: any[] = [];
   filteredUnits: any[] = [];
   cols: any[] = [];
@@ -40,6 +41,7 @@ export class UnitListComponent {
     this.fetchUnits();
   }
 
+
   fetchUnits() {
     this.isLoading = true; // Mostrar el mensaje de carga
     this.apiService.getUnits().subscribe({
@@ -48,6 +50,7 @@ export class UnitListComponent {
         this.units = data.data.units;
         this.filteredUnits = [...this.units]; // Inicializar los datos filtrados
         this.unitSelected.emit(this.units[0]);
+        this.unitsList.emit(this.units);
         console.log('Units fetched successfully:', JSON.stringify(this.units));
         this.isLoading = false; // Ocultar el mensaje de carga
       },

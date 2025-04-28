@@ -1,6 +1,15 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import * as L from 'leaflet';
 
+// Sobrescribir el marcador predeterminado de Leaflet
+delete (L.Icon.Default.prototype as any)._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: '',
+  iconUrl: '',
+  shadowUrl: ''
+});
+
 @Component({
   selector: 'app-map-view',
   standalone: true,
@@ -43,30 +52,40 @@ export class MapViewComponent implements OnChanges{
     if (this.unit) {
       console.log('Nueva unidad recibida:', this.unit);
       this.setMapPosition(this.unit.lat, this.unit.lng);
+    }
   }
-}
 
-getTranslatedState(state: string): string {
-  return this.stateDictionary[state] || 'Estado desconocido';
-}
-      // Aquí puedes activar la función que quieras
+  getTranslatedState(state: string): string {
+    return this.stateDictionary[state] || 'Estado desconocido';
+  }
+
   setMapPosition(lat: number, lng: number) {
     if (this.map) {
-      this.map.setView([lat, lng], 13); // Cambia la vista del mapa a la nueva posición
-      L.marker([lat, lng]).addTo(this.map).bindPopup(`
+      // Eliminar todos los marcadores existentes
+      this.map.eachLayer((layer) => {
+        if (layer instanceof L.Marker) {
+          this.map?.removeLayer(layer);
+        }
+      });
+
+      // Agregar un marcador personalizado
+      const customIcon = L.divIcon({
+        html: '<span class="material-symbols-outlined">minor_crash</span>',
+        className: 'custom-marker-icon',
+        iconSize: [30, 30], // Ajustar tamaño según sea necesario
+        iconAnchor: [15, 15] // Ajustar punto de anclaje según sea necesario
+      });
+
+      // Agregar el marcador al mapa
+      L.marker([lat, lng], { icon: customIcon }).addTo(this.map).bindPopup(`
         <strong>${this.unit.label}</strong><br>
         Lat: ${lat}<br>
         Lng: ${lng}<br>
         Estado: ${this.getTranslatedState(this.unit.state.name)}
       `).openPopup();
-      const customIcon = L.divIcon({
-        html: '<span class="material-symbols-outlined">minor_crash</span>',
-        className: 'custom-marker-icon',
-        iconSize: [30, 30], // Adjust size as needed
-        iconAnchor: [15, 15] // Adjust anchor point as needed
-      });
-      L.marker([lat, lng], { icon: customIcon }).addTo(this.map);
+
+      // Centrar el mapa en las coordenadas del marcador
+      this.map.setView([lat, lng], this.map.getZoom());
     }
   }
- 
 }

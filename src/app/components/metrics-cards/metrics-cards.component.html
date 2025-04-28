@@ -1,27 +1,26 @@
 <div class="card">
     <div class="row card-body">
         <div class="col-lg-3 col-md-6 col-xs-6" style="margin-bottom: 8px;">
-            <div class="card shadow-sm h-100" style="background-color: #4680FF; color: white;">
-                <div class="card-body ">
-                    <h5 class="card-title">Unidad</h5>
-                    <p class="card-text" style="font-weight: 600; font-size: large;">{{ this.unit.label }}</p>
-                    <p class="card-text" style="font-weight: 600; font-size: large;">Id: {{ this.unit.unit_id }}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-xs-6" style="margin-bottom: 8px;">
-            <div class="card shadow-sm h-100" style="background-color: #E6A1F2; color: white;">
-                <div class="card-body ">
-                    <h5 class="card-title">Kilometraje</h5>
-                    <p class="card-text" style="font-weight: 600; font-size: large;">{{ this.unit.mileage }} km</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-xs-6" style="margin-bottom: 8px;">
             <div class="card shadow-sm h-100" style="background-color: #3498DA; color: white;">
                 <div class="card-body ">
-                    <h5 class="card-title">Consumo promedio de combustible</h5>
-                    <p class="card-text" style="font-weight: 600; font-size: large;">{{ this.unit.avg_fuel_consumption.measurement }}</p>
+                    <h5 class="card-title">Total de unidades activas</h5>
+                    <p class="card-text" style="font-weight: 600; font-size: large;">{{ this.generalData.totalOfUnits }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-xs-6" style="margin-bottom: 8px;">
+            <div class="card shadow-sm h-100" style="background-color: #E6A1F2 ; color: white;">
+                <div class="card-body ">
+                    <h5 class="card-title">Unidad Actual</h5>
+                    <p class="card-text" style="font-weight: 600; font-size: large;">{{ this.unit.label }} ({{ this.unit.unit_id }})</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-xs-6" style="margin-bottom: 8px;">
+            <div class="card shadow-sm h-100" style="background-color: #4680FF; color: white;">
+                <div class="card-body ">
+                    <h5 class="card-title">Dirección</h5>
+                    <p class="card-text" style="font-weight: 600; font-size: large;">{{ this.unit.directionMeaning }}</p>
                 </div>
             </div>
         </div>
@@ -29,7 +28,8 @@
             <div class="card shadow-sm h-100">
                 <div class="card-body " style="background-color: #FC6080; color: white;">
                     <h5 class="card-title">Última actualización</h5>
-                    <p class="card-text" style="font-weight: 600; font-size: large;">{{ this.unit.last_update | date:'dd/MM/yy: HH:mm' }}</p>
+                    <!-- <p>{{this.unit.last_update}}</p> -->
+                    <p class="card-text" style="font-weight: 600; font-size: large;">{{ this.unit.last_update | date:'dd/MM/yyyy HH:mm' }}</p>
                 </div>
             </div>
         </div>
