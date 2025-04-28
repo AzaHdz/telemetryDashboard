@@ -1,0 +1,76 @@
+<div class="card">
+  <div class="row card-body">
+    <!-- Gráfico de Temperatura -->
+    <h2 class="card-title h5 mb-4">Gráficas de Datos Monitoreados</h2>
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" style="margin-bottom: 32px;">
+      <h4>Temperatura</h4>
+      <div style="width: 100%; margin-bottom: 16px;">
+        <canvas #temperatureChart></canvas>
+      </div>
+      <div class="form-group row">
+        <div class="col-6">
+          <label for="temperatureFrom">Desde:</label>
+          <input id="temperatureFrom" type="date" class="form-control" [value]="dateRanges.temperature.from" (change)="onDateChange('temperature', 'from', $event)">
+        </div>
+        <div class="col-6">
+          <label for="temperatureTill">Hasta:</label>
+          <input id="temperatureTill" type="date" class="form-control" [value]="dateRanges.temperature.till" (change)="onDateChange('temperature', 'till', $event)">
+        </div>
+      </div>
+    </div>
+
+    <!-- Gráfico de Consumo de Combustible -->
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" style="margin-bottom: 32px;">
+      <h4>Consumo de combustible</h4>
+      <div style="width: 100%; margin-bottom: 16px;">
+        <canvas #fuelConsumptionChart></canvas>
+      </div>
+      <div class="form-group row">
+        <div class="col-6">
+          <label for="fuelFrom">Desde:</label>
+          <input id="fuelFrom" type="date" class="form-control" [value]="dateRanges.fuel.from" (change)="onDateChange('fuel', 'from', $event)">
+        </div>
+        <div class="col-6">
+          <label for="fuelTill">Hasta:</label>
+          <input id="fuelTill" type="date" class="form-control" [value]="dateRanges.fuel.till" (change)="onDateChange('fuel', 'till', $event)">
+        </div>
+      </div>
+    </div>
+
+    <!-- Gráfico de Velocidad -->
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" style="margin-bottom: 32px;">
+      <h4>Velocidad</h4>
+      <div style="width: 100%; margin-bottom: 16px;">
+        <canvas #speedChart></canvas>
+      </div>
+      <div class="form-group row">
+        <div class="col-6">
+          <label for="speedFrom">Desde:</label>
+          <input id="speedFrom" type="date" class="form-control" [value]="dateRanges.speed.from" (change)="onDateChange('speed', 'from', $event)">
+        </div>
+        <div class="col-6">
+          <label for="speedTill">Hasta:</label>
+          <input id="speedTill" type="date" class="form-control" [value]="dateRanges.speed.till" (change)="onDateChange('speed', 'till', $event)">
+        </div>
+      </div>
+    </div>
+
+    <!-- Gráfico de Tiempo de Inactividad del Vehículo -->
+    <div class="col-lg-4 col-md-6  col-sm-12 col-xs-12">
+      <h4>Tiempo de Inactividad del Vehículo</h4>
+      <div style="width: 100%; margin-bottom: 16px;">
+        <canvas #idleTimeChart></canvas>
+      </div>
+      <div class="form-group row">
+        <div class="col-6">
+          <label for="idleFrom">Desde:</label>
+          <input id="idleFrom" type="date" class="form-control" [value]="dateRanges.idle.from" (change)="onDateChange('idle', 'from', $event)">
+        </div>
+        <div class="col-6">
+          <label for="idleTill">Hasta:</label>
+          <input id="idleTill" type="date" class="form-control" [value]="dateRanges.idle.till" (change)="onDateChange('idle', 'till', $event)">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

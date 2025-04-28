@@ -1,0 +1,66 @@
+<div class="card" style="width: 100%;">
+  <div class="card-body">
+    <h2 class="card-title h5 mb-4">Lista de Unidades</h2>
+
+    <!-- Mensaje de carga -->
+    <div *ngIf="isLoading" class="alert alert-info" role="alert">
+      Cargando datos, por favor espere...
+    </div>
+
+    <!-- Tabla de unidades -->
+    <div *ngIf="!isLoading" style="max-height: 400px; overflow-y: auto;">
+      <table class="table table-hover" style="width: 100%; border-collapse: separate; border-spacing: 0;">
+        <thead>
+          <tr>
+            <th *ngFor="let col of cols" style="position: sticky; top: 0; background: white; z-index: 1;">
+              {{ col.header }}
+              <!-- Filtro para 'label' -->
+              <div *ngIf="col.field === 'label'" style="margin-top: 8px;">
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  placeholder="Filtrar {{ col.header }}"
+                  (input)="onFilterChange(col.field, $event)"
+                />
+              </div>
+              <!-- Filtro para 'state' -->
+              <div *ngIf="col.field === 'state'" style="margin-top: 8px;">
+                <select
+                  class="form-control form-control-sm"
+                  (change)="onFilterChange(col.field, $event)"
+                >
+                  <option value="">Todos</option>
+                  <option value="standing">Detenido</option>
+                  <option value="nodata">Sin datos</option>
+                  <option value="driving">Conduciendo</option>
+                </select>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let rowData of filteredUnits" (click)="onRowClick(rowData)" style="cursor: pointer;">
+            <td *ngFor="let col of cols">
+              <ng-container *ngIf="col.field !== 'state'; else stateTemplate">
+                {{ rowData[col.field] }}
+              </ng-container>
+              <ng-template #stateTemplate>
+                <span
+                  [ngStyle]="{
+                    color: rowData.state?.name === 'standing'
+                      ? '#E9A319'
+                      : rowData.state?.name === 'driving'
+                      ? 'green'
+                      : 'inherit'
+                  }"
+                >
+                  {{ getTranslatedState(rowData.state?.name) }}
+                </span>
+              </ng-template>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
