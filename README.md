@@ -1,6 +1,49 @@
 # DashboardApp
 
+Puedes ver la App corriendo en http://18.227.48.34/  usando AWS EC2 y Nginx
+
+![DashboardApp Preview](src/images/generalView.png)
+![DashboardApp Preview](src/images/generalView2.png)
+
+Este proyecto se compone de 2 partes: Frontend y Backend
+
+## Frontend
+Para correr el proyecto localmente (FrontEnd), sigue estos pasos:
+1. Clonar el repositorio
+git clone <URL_DEL_REPOSITORIO>
+cd dashboard-app
+
+2. Instalar las dependencias
+Asegúrate de que tienes Node.js version v20.17.0  y npm instalados. Luego, instala las dependencias del proyecto:
+npm install
+
+3. Iniciar el servidor de desarrollo
+ng serve
+
+
+Esto iniciará la aplicación en http://localhost:4200/.
+
+## Backend
+Para correr el backend sigue estos pasos:
+1. Configurar variables de entorno: 
+cd backend
+crea un archivo .env en la raíz de la carpeta backend y agrega las configuraciones necesarias:
+TELEMATICS_API_KEY={Api_key}
+TELEMATICS_API_URL=https://www.telematicsadvance.com/api/v1/
+
+2. Instalar las dependencias
+npm install
+
+4. Iniciar el servidor del backend
+npm start
+
+5. Verificar el servidor
+Server running on port 3000
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.16.
+
+
 
 ## Development server
 
