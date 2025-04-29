@@ -1,6 +1,6 @@
 # DashboardApp
 
-Puedes ver la App corriendo en http://18.227.48.34/  usando AWS EC2 y Nginx
+Puedes ver la App corriendo en tu computadora con el siguiente enlace http://18.227.48.34/    Se desplegó usando AWS EC2 y Nginx
 
 ![DashboardApp Preview](src/images/generalView.png)
 ![DashboardApp Preview](src/images/generalView3.png)
