@@ -3,7 +3,7 @@
 Puedes ver la App corriendo en http://18.227.48.34/  usando AWS EC2 y Nginx
 
 ![DashboardApp Preview](src/images/generalView.png)
-![DashboardApp Preview](src/images/generalView2.png)
+![DashboardApp Preview](src/images/generalView3.png)
 
 Este proyecto se compone de 2 partes: Frontend y Backend
 
